@@ -44,12 +44,12 @@
       <version>4.25.0</version>
     </dependency>
 
-    <!-- WebDriver for Selenium Grid -->
+    <!-- Remote WebDriver for Selenium Grid -->
     <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-remote-driver</artifactId>
-      <version>4.25.0</version>
-    </dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-remote-driver</artifactId>
+    <version>4.25.0</version>
+</dependency>
 
     <!-- Gson for JSON handling (optional if needed) -->
     <dependency>
