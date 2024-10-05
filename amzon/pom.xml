@@ -44,7 +44,7 @@
       <version>4.25.0</version>
     </dependency>
 
-    <!-- Remote WebDriver for Selenium Grid -->
+    <!-- WebDriver for Selenium Grid -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-remote-driver</artifactId>
