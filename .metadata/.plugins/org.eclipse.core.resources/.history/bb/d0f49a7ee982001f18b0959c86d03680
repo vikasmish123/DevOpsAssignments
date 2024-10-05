@@ -1,0 +1,51 @@
+package testCase;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+
+public class AmazonTest {
+    WebDriver driver;
+    String baseUrl = "https://www.amazon.com/";
+
+    @BeforeClass
+    @Parameters("browser")
+    public void setUp(String browser) throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        
+        if (browser.equalsIgnoreCase("chrome")) {
+            capabilities.setBrowserName("chrome");
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            capabilities.setBrowserName("firefox");
+        } else if (browser.equalsIgnoreCase("edge")) {
+            capabilities.setBrowserName("MicrosoftEdge");
+        }
+        
+        // Create URL using URI.create
+        driver = new RemoteWebDriver(URI.create("http://localhost:4450/wd/hub").toURL(), capabilities);
+    }
+
+    @Test
+    public void testAmazonSearch() {
+        driver.get(baseUrl);
+        // Add your test steps here (e.g., search for a product and verify results)
+        System.out.println("Title of the page: " + driver.getTitle());
+        // Example verification step
+        assert driver.getTitle().contains("Amazon") : "Title does not contain 'Amazon'";
+    }
+
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}

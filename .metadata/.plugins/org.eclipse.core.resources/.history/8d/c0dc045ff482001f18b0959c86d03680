@@ -1,0 +1,61 @@
+package testCase;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import java.net.MalformedURLException;
+import java.net.URI;
+
+public class AmazonTest {
+    WebDriver driver;
+    String baseUrl = "https://www.amazon.com/";
+
+    @BeforeClass
+    @Parameters("browser")
+    public void setUp(String browser) throws MalformedURLException {
+        // Create URL using URI.create
+        driver = new RemoteWebDriver(URI.create("http://localhost:4450/ui/").toURL(), new ChromeOptions());
+
+        if (browser.equalsIgnoreCase("chrome")) {
+            ChromeOptions options = new ChromeOptions();
+            driver = new RemoteWebDriver(URI.create("http://localhost:4450/ui/").toURL(), options);
+            System.out.println("Connection Established with Chrome Browser");
+
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            FirefoxOptions options = new FirefoxOptions();
+            driver = new RemoteWebDriver(URI.create("http://localhost:4450/ui/").toURL(), options);
+            System.out.println("Connection Established with Firefox Browser");
+
+        } else if (browser.equalsIgnoreCase("edge")) {
+            EdgeOptions options = new EdgeOptions();
+            driver = new RemoteWebDriver(URI.create("http://localhost:4450/wd/hub").toURL(), options);
+            System.out.println("Connection Established with Edge Browser");
+        }
+    }
+
+    @Test
+    public void testAmazonSearch() throws InterruptedException {
+        driver.get(baseUrl);
+        // Simulating some wait time
+        Thread.sleep(5000);
+        System.out.println("Application Executing Parallelly!");
+        // Add your test steps here (e.g., search for a product and verify results)
+        System.out.println("Title of the page: " + driver.getTitle());
+        // Example verification step
+        assert driver.getTitle().contains("Amazon") : "Title does not contain 'Amazon'";
+    }
+
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}

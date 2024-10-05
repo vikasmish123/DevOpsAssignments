@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Amazon Cross Browser Test" parallel="tests" thread-count="3">
+
+    <test name="Chrome Test">
+        <parameter name="browser" value="chrome" />  <!-- Parameter for Chrome browser -->
+        <classes>
+            <class name="testCase.AmazonTest" />  <!-- Fully qualified test class name -->
+        </classes>
+    </test>
+
+    <test name="Firefox Test">
+        <parameter name="browser" value="firefox" />  <!-- Parameter for Firefox browser -->
+        <classes>
+            <class name="testCase.AmazonTest" />  <!-- Fully qualified test class name -->
+        </classes>
+    </test>
+
+    <test name="Edge Test">
+        <parameter name="browser" value="edge" />  <!-- Parameter for Edge browser -->
+        <classes>
+            <class name="testCase.AmazonTest" />  <!-- Fully qualified test class name -->
+        </classes>
+    </test>
+
+</suite>
