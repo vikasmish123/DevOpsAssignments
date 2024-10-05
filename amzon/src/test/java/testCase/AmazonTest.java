@@ -37,6 +37,8 @@ public class AmazonTest {
             driver = new RemoteWebDriver(url, cap);
             System.out.println("Connection Established with Edge Browser");
         }
+        
+        // This is thread sleep i used
 
         Thread.sleep(5000);
         driver.get("https://www.amazon.in");
